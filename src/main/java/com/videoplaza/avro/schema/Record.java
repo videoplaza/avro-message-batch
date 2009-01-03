@@ -5,14 +5,72 @@
  */
 package com.videoplaza.avro.schema;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
-@SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Record extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -4354479586924594043L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Record\",\"namespace\":\"com.videoplaza.avro.schema\",\"fields\":[{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"attributes\",\"type\":[\"null\",{\"type\":\"map\",\"values\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"}],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
+
+  private static SpecificData MODEL$ = new SpecificData();
+
+  private static final BinaryMessageEncoder<Record> ENCODER =
+      new BinaryMessageEncoder<Record>(MODEL$, SCHEMA$);
+
+  private static final BinaryMessageDecoder<Record> DECODER =
+      new BinaryMessageDecoder<Record>(MODEL$, SCHEMA$);
+
+  /**
+   * Return the BinaryMessageEncoder instance used by this class.
+   * @return the message encoder used by this class
+   */
+  public static BinaryMessageEncoder<Record> getEncoder() {
+    return ENCODER;
+  }
+
+  /**
+   * Return the BinaryMessageDecoder instance used by this class.
+   * @return the message decoder used by this class
+   */
+  public static BinaryMessageDecoder<Record> getDecoder() {
+    return DECODER;
+  }
+
+  /**
+   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
+   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
+   * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
+   */
+  public static BinaryMessageDecoder<Record> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<Record>(MODEL$, SCHEMA$, resolver);
+  }
+
+  /**
+   * Serializes this Record to a ByteBuffer.
+   * @return a buffer holding the serialized data for this instance
+   * @throws java.io.IOException if this instance could not be serialized
+   */
+  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
+    return ENCODER.encode(this);
+  }
+
+  /**
+   * Deserializes a Record from a ByteBuffer.
+   * @param b a byte buffer holding serialized data for an instance of this class
+   * @return a Record instance decoded from the given buffer
+   * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
+   */
+  public static Record fromByteBuffer(
+      java.nio.ByteBuffer b) throws java.io.IOException {
+    return DECODER.decode(b);
+  }
+
    private java.nio.ByteBuffer data;
    private java.util.Map<java.lang.String,java.lang.String> attributes;
 
@@ -33,13 +91,14 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
     this.attributes = attributes;
   }
 
+  public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return data;
     case 1: return attributes;
-    default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -49,7 +108,7 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
     switch (field$) {
     case 0: data = (java.nio.ByteBuffer)value$; break;
     case 1: attributes = (java.util.Map<java.lang.String,java.lang.String>)value$; break;
-    default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -62,6 +121,7 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
   }
 
 
+
   /**
    * Gets the value of the 'attributes' field.
    * @return The value of the 'attributes' field.
@@ -69,6 +129,7 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
   public java.util.Map<java.lang.String,java.lang.String> getAttributes() {
     return attributes;
   }
+
 
 
   /**
@@ -85,7 +146,11 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
    * @return A new Record RecordBuilder
    */
   public static com.videoplaza.avro.schema.Record.Builder newBuilder(com.videoplaza.avro.schema.Record.Builder other) {
-    return new com.videoplaza.avro.schema.Record.Builder(other);
+    if (other == null) {
+      return new com.videoplaza.avro.schema.Record.Builder();
+    } else {
+      return new com.videoplaza.avro.schema.Record.Builder(other);
+    }
   }
 
   /**
@@ -94,12 +159,17 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
    * @return A new Record RecordBuilder
    */
   public static com.videoplaza.avro.schema.Record.Builder newBuilder(com.videoplaza.avro.schema.Record other) {
-    return new com.videoplaza.avro.schema.Record.Builder(other);
+    if (other == null) {
+      return new com.videoplaza.avro.schema.Record.Builder();
+    } else {
+      return new com.videoplaza.avro.schema.Record.Builder(other);
+    }
   }
 
   /**
    * RecordBuilder for Record instances.
    */
+  @org.apache.avro.specific.AvroGenerated
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Record>
     implements org.apache.avro.data.RecordBuilder<Record> {
 
@@ -119,11 +189,11 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
       super(other);
       if (isValidValue(fields()[0], other.data)) {
         this.data = data().deepCopy(fields()[0].schema(), other.data);
-        fieldSetFlags()[0] = true;
+        fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
       if (isValidValue(fields()[1], other.attributes)) {
         this.attributes = data().deepCopy(fields()[1].schema(), other.attributes);
-        fieldSetFlags()[1] = true;
+        fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
     }
 
@@ -132,7 +202,7 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
      * @param other The existing instance to copy.
      */
     private Builder(com.videoplaza.avro.schema.Record other) {
-            super(SCHEMA$);
+      super(SCHEMA$);
       if (isValidValue(fields()[0], other.data)) {
         this.data = data().deepCopy(fields()[0].schema(), other.data);
         fieldSetFlags()[0] = true;
@@ -150,6 +220,7 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
     public java.nio.ByteBuffer getData() {
       return data;
     }
+
 
     /**
       * Sets the value of the 'data' field.
@@ -190,6 +261,7 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
       return attributes;
     }
 
+
     /**
       * Sets the value of the 'attributes' field.
       * @param value The value of 'attributes'.
@@ -222,32 +294,141 @@ public class Record extends org.apache.avro.specific.SpecificRecordBase implemen
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Record build() {
       try {
         Record record = new Record();
         record.data = fieldSetFlags()[0] ? this.data : (java.nio.ByteBuffer) defaultValue(fields()[0]);
         record.attributes = fieldSetFlags()[1] ? this.attributes : (java.util.Map<java.lang.String,java.lang.String>) defaultValue(fields()[1]);
         return record;
-      } catch (Exception e) {
+      } catch (org.apache.avro.AvroMissingFieldException e) {
+        throw e;
+      } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  private static final org.apache.avro.io.DatumWriter
-    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
+  @SuppressWarnings("unchecked")
+  private static final org.apache.avro.io.DatumWriter<Record>
+    WRITER$ = (org.apache.avro.io.DatumWriter<Record>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  private static final org.apache.avro.io.DatumReader
-    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
+  @SuppressWarnings("unchecked")
+  private static final org.apache.avro.io.DatumReader<Record>
+    READER$ = (org.apache.avro.io.DatumReader<Record>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
+  @Override protected boolean hasCustomCoders() { return true; }
+
+  @Override public void customEncode(org.apache.avro.io.Encoder out)
+    throws java.io.IOException
+  {
+    out.writeBytes(this.data);
+
+    if (this.attributes == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      long size0 = this.attributes.size();
+      out.writeMapStart();
+      out.setItemCount(size0);
+      long actualSize0 = 0;
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> e0: this.attributes.entrySet()) {
+        actualSize0++;
+        out.startItem();
+        out.writeString(e0.getKey());
+        java.lang.String v0 = e0.getValue();
+        out.writeString(v0);
+      }
+      out.writeMapEnd();
+      if (actualSize0 != size0)
+      throw new java.util.ConcurrentModificationException("Map-size written was " + size0 + ", but element count was " + actualSize0 + ".");
+    }
+
+  }
+
+  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
+    throws java.io.IOException
+  {
+    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
+    if (fieldOrder == null) {
+      this.data = in.readBytes(this.data);
+
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.attributes = null;
+      } else {
+        long size0 = in.readMapStart();
+        java.util.Map<java.lang.String,java.lang.String> m0 = this.attributes; // Need fresh name due to limitation of macro system
+        if (m0 == null) {
+          m0 = new java.util.HashMap<java.lang.String,java.lang.String>((int)size0);
+          this.attributes = m0;
+        } else m0.clear();
+        for ( ; 0 < size0; size0 = in.mapNext()) {
+          for ( ; size0 != 0; size0--) {
+            java.lang.String k0 = null;
+            k0 = in.readString();
+            java.lang.String v0 = null;
+            v0 = in.readString();
+            m0.put(k0, v0);
+          }
+        }
+      }
+
+    } else {
+      for (int i = 0; i < 2; i++) {
+        switch (fieldOrder[i].pos()) {
+        case 0:
+          this.data = in.readBytes(this.data);
+          break;
+
+        case 1:
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.attributes = null;
+          } else {
+            long size0 = in.readMapStart();
+            java.util.Map<java.lang.String,java.lang.String> m0 = this.attributes; // Need fresh name due to limitation of macro system
+            if (m0 == null) {
+              m0 = new java.util.HashMap<java.lang.String,java.lang.String>((int)size0);
+              this.attributes = m0;
+            } else m0.clear();
+            for ( ; 0 < size0; size0 = in.mapNext()) {
+              for ( ; size0 != 0; size0--) {
+                java.lang.String k0 = null;
+                k0 = in.readString();
+                java.lang.String v0 = null;
+                v0 = in.readString();
+                m0.put(k0, v0);
+              }
+            }
+          }
+          break;
+
+        default:
+          throw new java.io.IOException("Corrupt ResolvingDecoder.");
+        }
+      }
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
