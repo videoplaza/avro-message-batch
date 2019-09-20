@@ -108,6 +108,8 @@
                                 </goals>
                                 <configuration>
                                     <stringType>String</stringType>
+                                    <fieldVisibility>private</fieldVisibility>
+                                    <createSetters>false</createSetters>
                                     <sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
                                     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                                 </configuration>
