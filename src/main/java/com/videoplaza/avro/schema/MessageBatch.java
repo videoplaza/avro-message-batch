@@ -14,7 +14,7 @@ public class MessageBatch extends org.apache.avro.specific.SpecificRecordBase im
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MessageBatch\",\"namespace\":\"com.videoplaza.avro.schema\",\"fields\":[{\"name\":\"messages\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Message\",\"fields\":[{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"attributes\",\"type\":[\"null\",{\"type\":\"map\",\"values\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"}],\"default\":null}]}},\"doc\":\"List of messages\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** List of messages */
-  @Deprecated public java.util.List<com.videoplaza.avro.schema.Message> messages;
+   private java.util.List<com.videoplaza.avro.schema.Message> messages;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -57,14 +57,6 @@ public class MessageBatch extends org.apache.avro.specific.SpecificRecordBase im
     return messages;
   }
 
-  /**
-   * Sets the value of the 'messages' field.
-   * List of messages
-   * @param value the value to set.
-   */
-  public void setMessages(java.util.List<com.videoplaza.avro.schema.Message> value) {
-    this.messages = value;
-  }
 
   /**
    * Creates a new MessageBatch RecordBuilder.

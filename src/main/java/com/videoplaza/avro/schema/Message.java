@@ -13,8 +13,8 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
   private static final long serialVersionUID = -2153382188591056642L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Message\",\"namespace\":\"com.videoplaza.avro.schema\",\"fields\":[{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"attributes\",\"type\":[\"null\",{\"type\":\"map\",\"values\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"}],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  @Deprecated public java.nio.ByteBuffer data;
-  @Deprecated public java.util.Map<java.lang.String,java.lang.String> attributes;
+   private java.nio.ByteBuffer data;
+   private java.util.Map<java.lang.String,java.lang.String> attributes;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -61,13 +61,6 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     return data;
   }
 
-  /**
-   * Sets the value of the 'data' field.
-   * @param value the value to set.
-   */
-  public void setData(java.nio.ByteBuffer value) {
-    this.data = value;
-  }
 
   /**
    * Gets the value of the 'attributes' field.
@@ -77,13 +70,6 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     return attributes;
   }
 
-  /**
-   * Sets the value of the 'attributes' field.
-   * @param value the value to set.
-   */
-  public void setAttributes(java.util.Map<java.lang.String,java.lang.String> value) {
-    this.attributes = value;
-  }
 
   /**
    * Creates a new Message RecordBuilder.
