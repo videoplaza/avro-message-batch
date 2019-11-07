@@ -9,9 +9,9 @@ import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
-public class Message extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2153382188591056642L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Message\",\"namespace\":\"com.videoplaza.avro.schema\",\"fields\":[{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"attributes\",\"type\":[\"null\",{\"type\":\"map\",\"values\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"}],\"default\":null}]}");
+public class Record extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -4354479586924594043L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Record\",\"namespace\":\"com.videoplaza.avro.schema\",\"fields\":[{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"attributes\",\"type\":[\"null\",{\"type\":\"map\",\"values\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"}],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
    private java.nio.ByteBuffer data;
    private java.util.Map<java.lang.String,java.lang.String> attributes;
@@ -21,14 +21,14 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public Message() {}
+  public Record() {}
 
   /**
    * All-args constructor.
    * @param data The new value for data
    * @param attributes The new value for attributes
    */
-  public Message(java.nio.ByteBuffer data, java.util.Map<java.lang.String,java.lang.String> attributes) {
+  public Record(java.nio.ByteBuffer data, java.util.Map<java.lang.String,java.lang.String> attributes) {
     this.data = data;
     this.attributes = attributes;
   }
@@ -72,36 +72,36 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
 
 
   /**
-   * Creates a new Message RecordBuilder.
-   * @return A new Message RecordBuilder
+   * Creates a new Record RecordBuilder.
+   * @return A new Record RecordBuilder
    */
-  public static com.videoplaza.avro.schema.Message.Builder newBuilder() {
-    return new com.videoplaza.avro.schema.Message.Builder();
+  public static com.videoplaza.avro.schema.Record.Builder newBuilder() {
+    return new com.videoplaza.avro.schema.Record.Builder();
   }
 
   /**
-   * Creates a new Message RecordBuilder by copying an existing Builder.
+   * Creates a new Record RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new Message RecordBuilder
+   * @return A new Record RecordBuilder
    */
-  public static com.videoplaza.avro.schema.Message.Builder newBuilder(com.videoplaza.avro.schema.Message.Builder other) {
-    return new com.videoplaza.avro.schema.Message.Builder(other);
+  public static com.videoplaza.avro.schema.Record.Builder newBuilder(com.videoplaza.avro.schema.Record.Builder other) {
+    return new com.videoplaza.avro.schema.Record.Builder(other);
   }
 
   /**
-   * Creates a new Message RecordBuilder by copying an existing Message instance.
+   * Creates a new Record RecordBuilder by copying an existing Record instance.
    * @param other The existing instance to copy.
-   * @return A new Message RecordBuilder
+   * @return A new Record RecordBuilder
    */
-  public static com.videoplaza.avro.schema.Message.Builder newBuilder(com.videoplaza.avro.schema.Message other) {
-    return new com.videoplaza.avro.schema.Message.Builder(other);
+  public static com.videoplaza.avro.schema.Record.Builder newBuilder(com.videoplaza.avro.schema.Record other) {
+    return new com.videoplaza.avro.schema.Record.Builder(other);
   }
 
   /**
-   * RecordBuilder for Message instances.
+   * RecordBuilder for Record instances.
    */
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Message>
-    implements org.apache.avro.data.RecordBuilder<Message> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Record>
+    implements org.apache.avro.data.RecordBuilder<Record> {
 
     private java.nio.ByteBuffer data;
     private java.util.Map<java.lang.String,java.lang.String> attributes;
@@ -115,7 +115,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.videoplaza.avro.schema.Message.Builder other) {
+    private Builder(com.videoplaza.avro.schema.Record.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.data)) {
         this.data = data().deepCopy(fields()[0].schema(), other.data);
@@ -128,10 +128,10 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     /**
-     * Creates a Builder by copying an existing Message instance
+     * Creates a Builder by copying an existing Record instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.videoplaza.avro.schema.Message other) {
+    private Builder(com.videoplaza.avro.schema.Record other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.data)) {
         this.data = data().deepCopy(fields()[0].schema(), other.data);
@@ -156,7 +156,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'data'.
       * @return This builder.
       */
-    public com.videoplaza.avro.schema.Message.Builder setData(java.nio.ByteBuffer value) {
+    public com.videoplaza.avro.schema.Record.Builder setData(java.nio.ByteBuffer value) {
       validate(fields()[0], value);
       this.data = value;
       fieldSetFlags()[0] = true;
@@ -176,7 +176,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'data' field.
       * @return This builder.
       */
-    public com.videoplaza.avro.schema.Message.Builder clearData() {
+    public com.videoplaza.avro.schema.Record.Builder clearData() {
       data = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -195,7 +195,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'attributes'.
       * @return This builder.
       */
-    public com.videoplaza.avro.schema.Message.Builder setAttributes(java.util.Map<java.lang.String,java.lang.String> value) {
+    public com.videoplaza.avro.schema.Record.Builder setAttributes(java.util.Map<java.lang.String,java.lang.String> value) {
       validate(fields()[1], value);
       this.attributes = value;
       fieldSetFlags()[1] = true;
@@ -215,16 +215,16 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'attributes' field.
       * @return This builder.
       */
-    public com.videoplaza.avro.schema.Message.Builder clearAttributes() {
+    public com.videoplaza.avro.schema.Record.Builder clearAttributes() {
       attributes = null;
       fieldSetFlags()[1] = false;
       return this;
     }
 
     @Override
-    public Message build() {
+    public Record build() {
       try {
-        Message record = new Message();
+        Record record = new Record();
         record.data = fieldSetFlags()[0] ? this.data : (java.nio.ByteBuffer) defaultValue(fields()[0]);
         record.attributes = fieldSetFlags()[1] ? this.attributes : (java.util.Map<java.lang.String,java.lang.String>) defaultValue(fields()[1]);
         return record;
