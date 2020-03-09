@@ -22,7 +22,10 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      shell: bash
+      run: |
+        export VP_LAST_TAG=`git describe --tags`;
+        mvn -B package --file pom.xml
     - name: Publish to GitHub Packages Apache Maven
       shell: bash
       run: |
