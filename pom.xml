@@ -19,6 +19,14 @@
         <avro.version>1.8.1</avro.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Videoplaza Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/videoplaza/avro-message-batch</url>
+        </repository>
+    </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
