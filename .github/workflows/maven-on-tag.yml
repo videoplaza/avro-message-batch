@@ -21,15 +21,13 @@ jobs:
         java-version: 1.8
         server-id: github
         settings-path: ${{ github.workspace }}
-    #- name: Build with Maven
-    #  run: mvn -B package --file pom.xml
-    - name: Echo VP_LAST_TAG
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Publish to GitHub Packages Apache Maven
+      shell: bash
       run: |
         export VP_LAST_TAG=`git describe --tags`;
-        echo $VP_LAST_TAG
-      shell: bash
-    #- name: Publish to GitHub Packages Apache Maven
-    #  run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Davro-message-batch.version=${{ github.ref }}
-    #  env:
-    #    GITHUB_TOKEN: ${{ github.token }}
+        mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Davro-message-batch.version=$VP_LAST_TAG
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
 
