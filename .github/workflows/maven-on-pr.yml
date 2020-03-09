@@ -20,10 +20,9 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
     - name: Build with Maven
-      run: echo ${{ github.head_ref }}
-    #  run: mvn -B package --file pom.xml
-    #- name: Publish to GitHub Packages Apache Maven
-    #  run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Davro-message-batch.version=${{ github.run_number }}
-    #  env:
-    #    GITHUB_TOKEN: ${{ github.token }}
+      run: mvn -B package --file pom.xml
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Davro-message-batch.version=${{ github.head_ref }}-${{ github.run_number }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
 
