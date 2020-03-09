@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class MessageTest {
 
    @Test public void testData() {
-      Message m = Message.newBuilder()
+      Record m = Record.newBuilder()
           .setData(ByteBuffer.wrap("Expected".getBytes()))
           .build();
 
