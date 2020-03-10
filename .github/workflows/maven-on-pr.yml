@@ -27,7 +27,10 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Publish to private artifactory
       shell: bash
-      run: mvn deploy -s settings.xml -Davro-message-batch.version=${{ github.head_ref }}-${{ github.run_number }} -DaltDeploymentRepository=artifactory::default::$ARTIFACTORY_CANDIDATES_URL
+      run: |
+        echo $ARTIFACTORY_USER;
+        echo $ARTIFACTORY_CANDIDATES_URL;
+        mvn deploy -s settings.xml -Davro-message-batch.version=${{ github.head_ref }}-${{ github.run_number }} -DaltDeploymentRepository=artifactory::default::$ARTIFACTORY_CANDIDATES_URL
       env:
         ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
         ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
