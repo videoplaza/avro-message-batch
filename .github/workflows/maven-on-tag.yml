@@ -20,7 +20,6 @@ jobs:
       with:
         java-version: 1.8
         server-id: github
-        settings-path: ${{ github.workspace }}
     - name: Build with Maven
       shell: bash
       run: |
@@ -30,7 +29,16 @@ jobs:
       shell: bash
       run: |
         export VP_LAST_TAG=`git describe --tags`;
-        mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Davro-message-batch.version=$VP_LAST_TAG
+        mvn deploy -s settings.xml -Davro-message-batch.version=$VP_LAST_TAG
       env:
         GITHUB_TOKEN: ${{ github.token }}
+    - name: Publish to private artifactory
+      shell: bash
+      run: |
+        export VP_LAST_TAG=`git describe --tags`;
+        mvn deploy -s settings.xml -Davro-message-batch.version=$VP_LAST_TAG -DaltDeploymentRepository=artifactory::default::$ARTIFACTORY_RELEASES_URL
+      env:
+        ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
+        ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+        ARTIFACTORY_RELEASES_URL: ${{ secrets.ARTIFACTORY_RELEASES_URL }}
 
